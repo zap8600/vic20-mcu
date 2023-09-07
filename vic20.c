@@ -1,6 +1,6 @@
+#include <stdio.h>
 #define CHIPS_IMPL
 #include "chips/chips_common.h"
-#include "common.h"
 #include "chips/m6502.h"
 #include "chips/m6522.h"
 #include "chips/m6561.h"
@@ -31,8 +31,9 @@ int main() {
     vic20_desc_t desc = vic20_desc(joy_type, mem_config, c1530_enabled);
     vic20_t vic20;
     vic20_init(&vic20, &desc);
+    int ticks = 0;
     while (1) {
-        int ticks = vic20_exec(&vic20, vic20.pins);
+        ticks = ticks + vic20_exec(&vic20, 1);
         printf("Tick: %d\n", ticks);
     }
 }
