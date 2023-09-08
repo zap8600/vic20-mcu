@@ -31,12 +31,10 @@ int main() {
     vic20_desc_t desc = vic20_desc(joy_type, mem_config, c1530_enabled);
     vic20_t vic20;
     vic20_init(&vic20, &desc);
-    int ticks = 0;
-    while (1) {
-        ticks = ticks + vic20_exec(&vic20, 1);
-        printf("Ticks executed: %d\n", ticks);
-        chips_display_info_t vic20display = vic20_display_info(&vic20);
-        printf("Screen width: %d\n", vic20display.screen.width);
-        printf("Screen height: %d\n", vic20display.screen.height);
-    }
+    vic20_exec(&vic20, 1);
+    chips_display_info_t vic20display = vic20_display_info(&vic20);
+    printf("Screen width: %d\n", vic20display.screen.width);
+    printf("Screen height: %d\n", vic20display.screen.height);
+    printf("Framebuffer width: %d\n", vic20display.frame.dim.width);
+    printf("Framebuffer height: %d\n", vic20display.frame.dim.height);
 }
