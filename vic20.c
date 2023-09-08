@@ -34,6 +34,9 @@ int main() {
     int ticks = 0;
     while (1) {
         ticks = ticks + vic20_exec(&vic20, 1);
-        printf("Tick: %d\n", ticks);
+        printf("Ticks executed: %d\n", ticks);
+        chips_display_info_t vic20display = vic20_display_info(&vic20);
+        printf("Screen width: %d\n", vic20display.screen.width);
+        printf("Screen height: %d\n", vic20display.screen.height);
     }
 }
